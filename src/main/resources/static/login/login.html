@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>登录页面</title>
+		
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="layui/css/layui.css" />
+		<link rel="stylesheet" href="css/login.css" />
+		<link rel="stylesheet" href="css/animation.css">
+		
+	</head>
+
+	<body>
+		
+		<div id="particles-js"></div>
+		<!--动态背景渲染-->
+		<ul class="cb-slideshow">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+
+		<div class="container-fluid">
+			<div id="lg1">
+				<div style="flex: 5;"></div>
+				<div id="login">
+					<h1 style="font-weight: 600;text-align: center;font-size: 40px;">智慧校园学生管理---登录</h1>
+					<br />
+					<form class=" layui-form">
+						<div class="form-group">
+							<label for="inputUname" class="col-sm-4 control-label"><i class="layui-icon layui-icon-username"></i>&nbsp;&nbsp;用户名</label>
+							<div class="col-sm-12">
+								<input type="email" class="form-control" id="inputUname" placeholder="user">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputPassword" class="col-sm-4 control-label"><i class="layui-icon layui-icon-password"></i>&nbsp;&nbsp;密码</label>
+							<div class="col-sm-12">
+								<input type="password" class="form-control" id="inputPassword" placeholder="password">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-12">
+								<table>
+									<tr>
+										<td> <span style="font-size: 16px;position: relative;top: 2px;">自动登录：</span></td>
+											<td width="65%"> <input type="checkbox" name="auto" value="1" lay-skin="switch"></td>
+										<td> <span id="itlogin">其他登录</span>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-12">
+								<label class="btn btn-success label-click"  style="width: 100%;border: 0; border-radius:16px; height: 40px;background: rgba(40,167,69,0.6);">登 录</label>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div style="flex: 1;"></div>
+			</div>
+		</div>
+
+		<!--其他登录-->
+		<div id="id" style="display: none;background-color: rgba(20,20,20,0.5);width: 100%;height: 100%;padding-top: 30px;">
+			<form class=" layui-form ">
+						<div class="form-group ">
+							<label for="uname " class="col-sm-4 control-label " style="color: white; "><i class="layui-icon layui-icon-username "></i>&nbsp;&nbsp;用户名</label>
+							<div class="col-sm-12 ">
+								<input type="email " class="form-control " id="uname " placeholder="user ">
+							</div>
+						</div>
+						<div class="form-group ">
+							<label for="pwd " class="col-sm-4 control-label " style="color: white; "><i class="layui-icon layui-icon-password "></i>&nbsp;&nbsp;密码</label>
+							<div class="col-sm-12 ">
+								<input type="password " class="form-control " id="pwd " placeholder="password ">
+							</div>
+						</div>
+						
+						<div class="form-group ">
+							<div class="col-sm-offset-2 col-sm-12 ">
+								<label class="btn btn-success label-click" style="width: 46%;border: 0; border-radius:16px; height: 40px;background: rgba(40,167,69,0.9); ">家长登录</label>
+								&nbsp;&nbsp;
+								<label class="btn btn-success label-click" style="width: 46%;border: 0; border-radius:16px; height: 40px;background: rgba(40,167,69,0.9); ">学生登录</label>
+							</div>
+						</div>
+					</form>
+		</div>
+	</body>
+	<script type="text/javascript " src="js/jquery-1.12.4.js "></script>
+	<script type="text/javascript " src="layui/layui.js "></script>
+	<!--分子模型js-->
+	<script type="text/javascript " src="js/particles.js "></script>
+	<script type="text/javascript " src="js/app.js "></script>
+	<script>
+		layui.use('form', function() {});
+		
+		/*其他登录*/
+		$("#itlogin ").click(function(){
+			$("#lg1").hide();
+			layer.open({
+  			type: 1,
+  			content: $('#id'),
+  			shade: [0.1, 'black'],
+  			anim: 1,
+  			area: ['600px', '300px'],title: false,
+  			skin:'demo-skin',
+  			cancel : function(){
+				      $("#lg1").show();
+			}
+		});
+		})
+		
+	</script>
+
+</html>

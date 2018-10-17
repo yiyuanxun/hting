@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+
+
+
+
+
+
+
+body { 
+font: normal 11px auto "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; 
+color: #4f6b72; 
+background: #E6EAE9; 
+} 
+ 
+a { 
+color: #c75f3e; 
+text-decoration: none;
+} 
+
+.ys {
+    display: inline-block;
+    padding: .3em .5em;
+    background-image: linear-gradient(#ddd, #bbb);
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: .3em;
+    box-shadow: 0 1px white inset;
+    text-align: center;
+    text-shadow: 0 1px 1px black;
+    color:white;
+    font-weight: bold;
+}
+.ys:active{
+    box-shadow: .05em .1em .2em rgba(0,0,0,.6) inset;
+    border-color: rgba(0,0,0,.3);
+    background: #bbb;
+}
+--------------------- 
+作者：An丶 
+来源：CSDN 
+原文：https://blog.csdn.net/AnPHPer/article/details/79480097?utm_source=copy 
+版权声明：本文为博主原创文章，转载请附上博文链接！
+ 
+#mytable { 
+text-align:center;
+padding: 0; 
+margin: 0; 
+} 
+ 
+caption { 
+padding: 0 0 5px 0; 
+width: 700px; 
+font: italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; 
+text-align: right; 
+} 
+ 
+th { 
+font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; 
+color: #4f6b72; 
+border-right: 1px solid #C1DAD7; 
+border-bottom: 1px solid #C1DAD7; 
+border-top: 1px solid #C1DAD7; 
+letter-spacing: 2px; 
+text-transform: uppercase; 
+text-align: left; 
+padding: 6px 6px 6px 12px; 
+background: #CAE8EA  no-repeat; 
+text-align: center;
+} 
+/*power by www.winshell.cn*/ 
+th.nobg { 
+border-top: 0; 
+border-left: 0; 
+border-right: 1px solid #C1DAD7; 
+background: none; 
+} 
+ 
+td { 
+border-right: 1px solid #C1DAD7; 
+border-bottom: 1px solid #C1DAD7; 
+background: #fff; 
+font-size:11px; 
+padding: 6px 6px 6px 12px; 
+color: #4f6b72; 
+} 
+/*power by www.winshell.cn*/ 
+ 
+td.alt { 
+background: #F5FAFA; 
+color: #797268; 
+} 
+ 
+th.spec { 
+border-left: 1px solid #C1DAD7; 
+border-top: 0; 
+background: #fff no-repeat; 
+font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; 
+} 
+ 
+th.specalt { 
+border-left: 1px solid #C1DAD7; 
+border-top: 0; 
+background: #f5fafa no-repeat; 
+font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; 
+color: #797268; 
+} 
+/*---------for IE 5.x bug*/ 
+html>body td{ font-size:11px;} 
+body,td,th { 
+font-family: 宋体, Arial; 
+font-size: 12px; 
+
+--------------------- 
+作者：Clear_Love 
+来源：CSDN 
+原文：https://blog.csdn.net/sminhrosunny/article/details/6625790?utm_source=copy 
+版权声明：本文为博主原创文章，转载请附上博文链接！
+
+/* table {
+	border-collapse: collapse;
+	margin: 0 auto;
+	text-align: center;
+}
+
+table td, table th {
+	border: 1px solid #cad9ea;
+	color: #666;
+	height: 30px;
+}
+
+table thead th {
+	background-color: #CCE8EB;
+	width: 100px;
+}
+
+table tr:nth-child(odd) {
+	background: #fff;
+}
+
+table tr:nth-child(even) {
+	background: #F5FAFA;
+}
+---------------------
+作者：RoyanWang
+来源：CSDN
+原文：https
+:
+/
+/
+blog.csdn.net
+/
+hello_mr_anan
+/
+article
+/
+details
+/
+70257627
+?
+utm_source
+=
+copy
+版权声明：本文为博主原创文章，转载请附上博文链接！ */
+
+
+
+</style>
+<BODY class=oneColLiqCtrHdr>
+<DIV id=container>
+    <DIV id=header>
+        <H1>评论管理<BR></H1>
+        <form method="post" name="searchform" action="">
+            <TABLE class="tablesorter" cellSpacing=1 cellPadding=6 width="100%">
+                <TBODY>
+                <TR>
+                    <TD>  
+                    用户名:
+                      <input name="name" type="text" id="name" size="15" maxlength="20" style="width: 120px;height:15px;outline:none; border-radius:5px;">
+                    文章标题:
+                    <input name="proname" type="text" id="proname" size="15" style="width: 120px;height:15px;outline:none; border-radius:5px;">
+                  <input type="submit" name="button" class='ys' id="button" value="搜索"></TD>
+                    <TD width="240" >&nbsp;</TD>
+                    
+                </TR>
+                </TBODY>
+            </TABLE>
+        <input type="hidden" name="__hash__" value="145c14d6052f05a7d49a860273ceb053_edd8a18802a3ce5b879e24d8cc94f326" /></form>
+    </DIV>
+    <DIV id="mainContent"><BR>
+        <FORM method=post name=form2 action="" id="listform">
+            <TABLE id="itemlist" class="table" border=0 cellSpacing=1 cellPadding=6 width="100%">
+                <THEAD>
+                <TR>
+                    <th width="35">&nbsp;</th>
+                    <th width="35">序号</th>
+                    <TH width="160" scope=col align=center>用户</TH>
+                    <TH width="160" align=center>文章</TH>
+                    <TH>评论内容</TH>
+                    <TH width="80" scope=col align=center>评论时间</TH>
+                  </TR>
+                </THEAD>
+                <tbody>
+                    <tr>
+                        <td align="center"><input value="281" type="checkbox" name="comment_id[]"></td>
+                        <td align="center">
+                        1                        </td>
+                        <td align="center" nowrap><a href="/index.php/Admincp/user/edit/id/270.html" target="_blank">make Bug</a></td>
+                        <td align="center" nowrap>xiong</td>
+                        <td align="center">hello</td>
+                        <td align="center" nowrap>2018-09-22 16:07</td>
+                      </tr>
+                    </tbody><tbody>
+                    <tr>
+                        <td align="center"><input value="280" type="checkbox" name="comment_id[]"></td>
+                        <td align="center">
+                        2                        </td>
+                        <td align="center" nowrap><a href="/index.php/Admincp/user/edit/id/270.html" target="_blank">make Bug</a></td>
+                        <td align="center" nowrap>xiong</td>
+                        <td align="center">hello</td>
+                        <td align="center" nowrap>2018-09-22 16:07</td>
+                      </tr>
+                    </tbody><tbody>
+                    <tr>
+                        <td align="center"><input value="279" type="checkbox" name="comment_id[]"></td>
+                        <td align="center">
+                        3                        </td>
+                        <td align="center" nowrap><a href="/index.php/Admincp/user/edit/id/304.html" target="_blank">　</a></td>
+                        <td align="center" nowrap>韩语资料</td>
+                        <td align="center">123</td>
+                        <td align="center" nowrap>2018-09-21 15:27</td>
+                      </tr>
+                    </tbody>            </TABLE>
+            <TABLE id="itemlist" class="tablesorter" border=0 cellSpacing=1 cellPadding=6 width="100%">
+<TR>
+                    <TH colspan="8"><div class="digg"><div>  <span class="current">1</span><a class="num" href="/index.php/Admincp/User/comment/p/2.html">2</a><a class="num" href="/index.php/Admincp/User/comment/p/3.html">3</a><a class="num" href="/index.php/Admincp/User/comment/p/4.html">4</a><a class="num" href="/index.php/Admincp/User/comment/p/5.html">5</a><a class="num" href="/index.php/Admincp/User/comment/p/6.html">6</a><a class="num" href="/index.php/Admincp/User/comment/p/7.html">7</a><a class="num" href="/index.php/Admincp/User/comment/p/8.html">8</a><a class="num" href="/index.php/Admincp/User/comment/p/9.html">9</a><a class="num" href="/index.php/Admincp/User/comment/p/10.html">10</a> <a class="next" href="/index.php/Admincp/User/comment/p/2.html">下一页</a> </div></div></TH>
+              </TR>
+                
+                    
+                        
+                            <tr>
+                              <td><INPUT id="select" class="ys" value="选择所有" type=button name="select">
+                                    <INPUT id="delete" value="删除所选" type="submit" class="ys" name="delete" onClick="return confirm('是否删除选择的评论?');">
+                                    <INPUT id="add" class="ys" value="关闭" type=button name="add" onClick="window.close()">
+                                    </td>                              
+                            </tr>
+
+                
+
+          </TABLE>
+</FORM>
+        <H4>&nbsp;</H4><!-- end #mainContent --></DIV>
+        <DIV id=footer>
+        <P>&nbsp;</P><!-- end #footer --></DIV><!-- end #container --></DIV>
+</BODY>
+
+</html>

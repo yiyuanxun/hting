@@ -1,0 +1,195 @@
+
+ <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/Public/css/admin/admin-style.css" />
+<link rel="stylesheet" type="text/css" href="/Public/css/admin/buttons.css" />
+<script type="text/javascript" src="/Public/js/jquery-1.8.3.min.js"></script>
+<link rel="stylesheet" href="/Public/js/valid/css/validationEngine.jquery.css" type="text/css"/>
+<script src="/Public/js/valid/languages/jquery.validationEngine-zh_CN.js" type="text/javascript" charset="utf-8">
+</script>
+<script src="/Public/js/valid/jquery.validationEngine.js" type="text/javascript" charset="utf-8">
+</script>
+
+<script>
+    jQuery(document).ready(function(){
+        // binds form submission and fields to the validation engine
+        jQuery("#form10").validationEngine();
+    });
+    //获取下级地区数据
+function setarea(_pid,oname){
+  $.ajax({
+    url : '/index.php?m=Home&c=Ajax&a=getcity',
+    type: 'post',
+    dataType: 'json',
+    data:{pid:_pid},
+    success: function(res){
+      var obj = document.getElementById(oname);
+      obj.length=1;
+      for(var i=0, l=res.length; i<l; i++){
+        obj.add(new Option(res[i].areaname,res[i].areaid));
+      }
+    }
+  })
+}
+</script>
+<meta name="__hash__" content="1c6f49dda1dc5ee50068b2158f6b45c8_93ba17a7a3b726e650bce62d90b8189a" /></head>
+<body class="oneColLiqCtrHdr">
+
+<div id=container>
+  <div id="header">
+    <H3>会员信息</H3>
+  </DIV>
+  <DIV id="mainContent"><BR>
+    <form action="" method="POST" enctype="multipart/form-data" name="form1" id="form10">
+      <TABLE border=0 cellSpacing=1 cellPadding=6 width="100%" class="tablesorter">
+        <TBODY>
+          <TR>
+            <TD width="18%" align=right noWrap><strong>会员组:</strong></TD>
+            <TD  width="32%" noWrap>
+              <label for="group_id"></label>
+              普通会员                <select name="group_id" id="group_id" style="display:none;">
+                  <option value="1" selected>普通会员</option><option value="2" >大陆商家用户</option><option value="3" >海外商家用户</option>              </select>
+            </TD>
+            <TD width="18%" noWrap align=right>&nbsp;</TD>
+            <TD width="32%" noWrap>&nbsp;</TD>
+          </TR>
+          <TR>
+            <TD  align=right noWrap>用户名:</TD>
+            <TD  >咯</TD>
+            <TD  align=right>密码:</TD>
+            <TD  ><input id="password" size=20 type="text" name="password" value=""></TD>
+          </TR>
+          <TR>
+            <TD align=right noWrap>手机:</TD>
+            <TD ><input name="mobile" type="text" class="" id="mobile" value="" maxlength="13"></TD>
+            <TD align=right>邮箱:</TD>
+            <TD >			<!--
+			<input name="email" type="text" id="email" value="" size=40  class="validate[required,custom[email]]">
+			-->
+			</TD>
+          </TR>
+          <TR>
+            <TD align=right>真实姓名:</TD>
+            <TD ><input name="truename" type="text" id="truename" value="" size=20  class=""></TD>
+            <TD align=right>性别:</TD>
+            <TD >
+              <label>
+                <input name="sex" type="radio" id="check_0" value="男" checked>男</label>
+              <label>
+                <input type="radio" name="sex" value="女" id="check_1" >女</label>
+            </TD>
+          </TR>
+          <TR>
+            <TD align=right>住址:</TD>
+            <TD colspan="3"  ><select class="sel_f sel_f2 sel_b2" name="countryid" onChange="setarea(this.value, 'shengid')">
+					<option value="399" >中国</option><option value="400" >韩国</option><option value="1023" >测试地址</option>				</select>
+				<select class="sel_f sel_f2 sel_b2" name="shengid" id="shengid" onChange="setarea(this.value, 'areaid')">
+					<option value="0">省</option>
+									</select>
+			  <select class="sel_f sel_f2 sel_b2" name="areaid" id="areaid"  >
+					<option value="0">市</option>
+                    			  </select>
+				<input name="address" type="text" class="input_c inf_inc" id="address" value="" size="50"  />
+            </TD>
+          </TR>
+        </tbody>
+      </table>
+	        <TABLE border=0 cellSpacing=1 cellPadding=6 width="100%" class="tablesorter">
+        <TBODY>
+			<TR>
+            <TD width="18%" align=right noWrap> 注册时间:</TD>
+            <TD  width="32%">
+            2018-10-10 10:47            </TD>
+            <TD  width="18%" align="right">注册 IP:</TD>
+            <TD  width="32%" >43.250.200.63</TD>
+          </TR>
+          <TR>
+            <TD noWrap align=right>最后登录时间:</TD>
+            <TD >
+              2018-10-10 12:10            </TD>
+            <TD align="right">最后登录IP:</TD>
+            <TD ></TD>
+          </TR>
+          <TR>
+		  <TR style="display:;">
+			  <TD noWrap align=right>资料审核:</TD>
+			  <TD >
+              <label>
+                <input name="zt" type="radio" id="check_0" value="1" checked>已通过审核</label>
+              <label>
+                <input type="radio" name="zt" value="0" id="check_1" >未通过审核</label></TD>
+            <TD noWrap align=right>邮箱验证:</TD>
+            <TD >
+              <label>
+                <input name="check" type="radio" id="check_0" value="1" >已通过验证</label>
+              <label>
+                <input type="radio" name="check" value="0" id="check_1" checked>未通过验证</label>
+            </TD>
+		  </TR>
+
+            <TD><input type="hidden" name="userid" value="332"></TD>
+            <TD colspan="3" >
+              <INPUT id=button3 value="   保存     " type=submit name=button3 class="button white">　
+              <INPUT class="button white" id="add" value="返回" type=button name="add" onClick="history.go(-1)">
+            </TD>
+          </tr>
+        </tbody>
+      </table>
+    <input type="hidden" name="__hash__" value="1c6f49dda1dc5ee50068b2158f6b45c8_93ba17a7a3b726e650bce62d90b8189a" /></form>
+    <p>&nbsp;</p>
+  </div>
+  
+</div>
+<script src="/Public/js/datepicker/WdatePicker.js"></script>
+<script type="text/javascript">
+	/*
+	KindEditor.create('#desc', {
+		uploadJson : '/index.php/General/Editor/upload.html',
+		fileManagerJson : '/index.php/General/Editor/manager.html',
+		allowFileManager : false,
+		filterMode : false,
+		urlType : 'domain'
+	});
+	*/
+</script>
+<script type="text/javascript">
+  $('#free_time').val();
+  function kcbzj(id){
+    var test = window.location.href;
+    var data ={};
+     var  val = $('#kbzj').val();
+    if(!val){
+      alert('请填写扣除金额！');
+      return false;
+    }
+     data.id  = id;
+     data.val = val;
+      if(confirm("你是否要扣除保证金?"))
+      {
+                 $.post("/index.php/Admincp/user/kcbzj.html",data,function(json)
+                 {
+                    if(json.status==1)
+                    {
+                        alert(json.msg);
+                        location.href="test";
+                    }
+                   if(json.status==2)
+                    {
+                       alert(json.msg);
+                    }
+                   if(json.status==3)
+                   {
+                     alert(json.msg);
+                   }
+                 },"json");
+
+      }else
+      {
+                        return false;
+      }
+  }
+</script>
+</body>
+</html>

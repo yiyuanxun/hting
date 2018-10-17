@@ -1,0 +1,89 @@
+* {
+	color: white;
+}
+
+.my-side {
+	background: #2A877A;
+}
+
+header {
+	position: fixed;
+	top: 0px;
+	z-index: 10000;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	background: #2A877A;
+}
+
+.topNav {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	cursor: pointer;
+	background: #2A877A;
+}
+
+
+/*顶部右侧*/
+
+.topNav li {
+	margin: 0 10px;
+	padding: 0 20px;
+}
+
+.topNav li:hover {
+	background: rgba(5,126,115, 0.7);
+	color: white;
+}
+
+
+/*顶部颜色菜单*/
+
+.navc {
+	text-align: center;
+	cursor: pointer;
+	background: #2A877A;
+}
+
+.navc dd:hover {
+	background: #48B968;
+	color: white;
+}
+
+
+/*左菜单标题*/
+
+.navItem {
+	background: #2A877A;
+}
+
+.navItem_a:hover {
+	background: #48B968 !important;
+}
+
+#myToggle {
+	background: #1D5E55
+}
+
+
+/*标题中的内容*/
+
+.navItem dd:hover {
+	background: #48B968;
+}
+
+
+/*左菜单点击重构*/
+
+.layui-nav-tree .layui-nav-child dd.layui-this,
+.layui-nav-tree .layui-nav-child dd.layui-this a,
+.layui-nav-tree .layui-this,
+.layui-nav-tree .layui-this>a,
+.layui-nav-tree .layui-this>a:hover {
+	background-color: #48B968 !important;
+}
+
+.layui-tab-bar {
+    background: #2A877A;
+}

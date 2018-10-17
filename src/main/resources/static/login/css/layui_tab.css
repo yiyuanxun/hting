@@ -1,0 +1,52 @@
+			.layui-btn-color {
+				background-color: #EDEBF0;
+			}
+			
+			#pages {
+				display: flex;
+				justify-content: flex-end;
+				padding-right: 100px;
+			}
+			
+			#tbody tr:nth-child(even) {
+				background-color: #E0ECFF;
+			}
+			
+			#thead tr {
+				background-color: #EDEBF0;
+			}
+			
+			.layui-table td,
+			.layui-table th {
+				border-color: #4F678E;
+			}
+			
+			#tbody tr:hover {
+				cursor: pointer;
+				background-color: #f8f8f8;
+			}
+
+.layui-tab-card>.layui-tab-title {
+	padding: 6px 8px 1px;
+	background: #E0ECFF;
+	border-top: solid 1px #EDEBF0;
+	border-bottom: solid 2px #EDEBF0;
+}
+
+.layui-tab-card>.layui-tab-title li {
+	background: #E0ECFF;
+	border: solid 1px #EDEBF0;
+	border-bottom: 0;
+	color: #4F678E;
+	font-family: "微软雅黑";
+	border-radius: 8px 8px 0 0;
+	margin: 0 5px;
+}
+
+.layui-tab-title .layui-this:after {
+	border: 0;
+}
+
+.layui-tab-title li {
+	margin: 0px 3px;
+}

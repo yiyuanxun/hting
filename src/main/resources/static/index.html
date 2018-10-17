@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>首页 · 韩汀后台管理系统</title>
+		<link rel="stylesheet" href="layui/css/layui.css">
+		<!--默认黑色主题样式-->
+		<link rel="stylesheet" href="css/black.css">
+		<!--选项卡样式  -->
+		<link rel="stylesheet" href="css/layui_tab.css">
+	</head>
+
+	<body>
+		<div id="sec">
+			<header>
+				<div style="display: flex;width: auto; justify-content: space-around;align-items: center;">
+					<a href="">
+						<h2 class="my-header-logo"><img src="images/trees.jpg" width="40" height="40" style="border-radius: 40px;"/>&nbsp;&nbsp;韩汀后台</h2>
+					</a>
+					<button class="layui-btn layui-btn-small layui-btn-radius btn-nav" id="myToggle" style="margin: 0 20px;"><i class="layui-icon" style="color:white">&#xe65f;</i></button>
+				</div>
+
+				<ul class="layui-nav topNav">
+					<li class="layui-nav-item">
+						<i class="layui-icon">&#xe667;</i>&nbsp;
+						<label id="message" @click="myclick($event)" style="padding-right: 30px;">
+						公告栏
+						<!--关联选项卡的属性 跳转至指定页面-->
+						<input type="hidden" class="leftNav_href" value="html/message.html" />
+						<input type="hidden" class="leftNav_id" value="25" />
+						<input type="hidden" class="leftNav_name" value="公告栏" />
+						
+					</label>
+						<span class="layui-badge" style="margin-left: 80px;">9</span>
+					</li>
+					<li class="layui-nav-item">
+						<label>
+					<i class="layui-icon">&#xe770;</i>&nbsp;
+					<img  src="images/222.gif" class="layui-circle" width="40" height="40" style="border-radius: 40px;" />&nbsp;
+					<b>管理员<i class="layui-icon">&#xe62e;</i>李涛</b>
+					</label>
+					</li>
+					<li class="layui-nav-item">
+						<label href="javascript:;"><i class="layui-icon">&#xe66a;</i> &nbsp;主题 (<b id="titlebg">黑色</b>)</label>
+						<!--默认黑色-->
+						<dl class="layui-nav-child navc" id="nac">
+							<dd v-for="(temp) in colors" v-text="temp.cname" :cid="temp.cid" :color-href="temp.color_href"></dd>
+						</dl>
+					</li>
+
+					<li class="layui-nav-item">
+						<label><i class="layui-icon">&#xe716;</i> 操作</label>
+						<dl class="layui-nav-child navc" id="nac1">
+							<dd ty="self">个人中心</dd>
+							<dd ty="pwd">修改密码</dd>
+							<dd ty="logout">注销</dd>
+						</dl>
+
+					</li>
+					
+				</ul>
+
+			</header>
+
+			<div>
+				<div class="layui-side my-side">
+					<div class="layui-side-scroll">
+						<!-- 左侧主菜单添加选项卡监听 -->
+						<ul class="layui-nav layui-nav-tree" lay-filter="side-main">
+
+							<li class="layui-nav-item navItem" v-for="(temp,index) in leftNavs">
+								<a href="javascript:;" class="navItem_a"><i class="layui-icon">&#xe628;</i>{{temp.text}}</a>
+								<dl class="layui-nav-child navItem_dl">
+									<dd v-for="(t,index) in temp.dson" @click="myclick($event)">
+										<a href="javascript:;">
+											<input type="hidden" class="leftNav_href" :value="t.href" />
+											<i class="layui-icon">&#xe621;</i>
+											<input type="hidden" class="leftNav_id" :value="t.leftNav_id" />
+											<input type="hidden" class="leftNav_name" :value="t.name" /> {{t.name}}
+										</a>
+									</dd>
+								</dl>
+							</li>
+						</ul>
+
+					</div>
+				</div>
+
+				<div class="layui-body my-body">
+					<div class="layui-tab layui-tab-card my-tab" lay-filter="card" style="margin:0 ;">
+						<ul class="layui-tab-title" id="layuiTab">
+							<li class="layui-this layLoading" lay-id="0" lay-html="html/welcome.html"><span class="colors"><i class="layui-icon colors">&#xe638;</i>欢迎页</span></li>
+						</ul>
+						<div class="layui-tab-content">
+							<div class="layui-tab-item layui-show">
+								<iframe frameborder="0" src="html/welcome.html" width="100%" height="580" id="iframe"></iframe>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+
+		<!--菜单及主题颜色js-->
+		<script type="text/javascript" src="js/convert.js"></script>
+		<script type="text/javascript" src="js/menuJson.js"></script>
+		<script type="text/javascript" src="js/colorCss.js"></script>
+
+		<script type="text/javascript" src="js/vue.js"></script>
+		<script type="text/javascript" src="layui/layui.js"></script>
+		<script type="text/javascript">
+			layui.use('element', function() {
+				var element = layui.element;
+
+			});
+
+			$(function() {
+				// 监听导航栏收缩
+				$('#myToggle').on('click', function() {
+					if(localStorage.log == 0) {
+						navShow(700);
+					} else {
+						navHide(700);
+					}
+				});
+
+				$(".navItem").eq(0).addClass("layui-nav-itemed");
+
+				$('.rightmenu').parents().click(function() {
+					$('.rightmenu').hide();
+				});
+
+				/*主题颜色切换*/
+				$("#nac dd").click(function() {
+					var href = $(this).attr("color-href");
+					setStyleSheet(href);
+
+					$("#titlebg").html($(this).text())
+					$(".navc").hide();
+				});
+
+				/*顶部菜单操作部分*/
+				layui.use('layer', function() {
+					var layer = layui.layer;
+
+					$("#nac1 dd").click(function() {
+						var ty = $(this).attr("ty");
+						if(ty == "self") {
+							layer.open({
+								type: 2,
+								title: '个人中心信息',
+								area: ['860px', '550px'],
+								content: 'html_assist/self.html',
+								anim: 2,
+								btnAlign: 'c',
+								maxmin: true
+							})
+						} else if(ty == "pwd") {
+							layer.open({
+								type: 2,
+								title: '个人密码',
+								area: ['780px', '350px'],
+								content: 'html_assist/modifyPwd.html',
+								anim: 2,
+								btnAlign: 'c',
+								maxmin: true
+							})
+						} else if(ty == "logout") {
+							alert("注销了！！！")
+						}
+					})
+				})
+
+				//右菜单点击事件
+				$(".rightmenu li").on("click", function() {
+
+					var dt = $(this).attr("data-type");
+					var index = parseInt($(this).parent().attr("index"));
+					switch(dt) {
+						case "closethis": //关闭当前，如果开始了tab可关闭，实际意义不大
+							if($(".layLoading:nth-of-type(" + (index + 1) + ")").hasClass('layui-this')) {
+								var ty = $(".layLoading:nth-of-type(" + (index + 1) + ")").prev().attr("lay-html");
+								$(".layLoading:nth-of-type(" + (index + 1) + ")").prev().addClass("layui-this");
+								$("#iframe").attr("src", ty);
+							}
+							$(".layLoading:nth-of-type(" + (index + 1) + ")").hide();
+							break;
+						case "closeall": //关闭所有
+							var ty = $(".layLoading:nth-of-type(1)").attr("lay-html");
+							$(".layLoading:nth-of-type(1)").addClass("layui-this");
+							$("#iframe").attr("src", ty);
+							$(".layLoading:nth-of-type(n+2)").hide();
+
+							break;
+						case "closeothers": //关闭非当前
+
+							var ty = $(".layLoading:nth-of-type(" + (index + 1) + ")").attr("lay-html");
+							$(".layLoading:nth-of-type(" + (index + 1) + ")").addClass("layui-this");
+							$("#iframe").attr("src", ty);
+							$(".layLoading:nth-of-type(" + (index + 1) + ")").siblings(".layLoading:nth-of-type(n+2)").hide();
+
+							break;
+						case "closeleft": //关闭左侧全部
+							if($(".layLoading:lt(" + index + ")").hasClass('layui-this')) {
+								var ty = $(".layLoading:nth-of-type(1)").attr("lay-html");
+								$(".layLoading:nth-of-type(1)").addClass("layui-this");
+								$("#iframe").attr("src", ty);
+							}
+							$(".layLoading:gt(0):lt(" + (index - 1) + ")").hide();
+
+							break;
+						case "closeright": //关闭右侧全部
+
+							if($(".layLoading:gt(" + (index - 1) + ")").hasClass('layui-this')) {
+								var ty = $(".layLoading:nth-of-type(" + (index + 1) + ")").attr("lay-html");
+								$(".layLoading:nth-of-type(" + (index + 1) + ")").addClass("layui-this");
+								$("#iframe").attr("src", ty);
+							}
+							$(".layLoading:gt(" + index + ")").hide();
+
+							break;
+
+						default:
+							$('.rightmenu').hide();
+
+					}
+					$('.rightmenu').hide();
+				})
+			})
+
+			/*vue数据绑定*/
+			var vm = new Vue({
+				el: "#sec",
+				data: {
+					leftNavs: [],
+					colors: []
+				},
+
+				methods: {
+					myclick: function(e) {
+						var tp = $(e.target).find(".leftNav_href").val();
+						var pd = true;
+						var tid = $(e.target).find(".leftNav_id").val();
+
+						$("#layuiTab").children().each(function() {
+							$(this).removeClass("layui-this");
+						})
+
+						$("#layuiTab").children().each(function() {
+							if($(this).attr("lay-id") == tid) {
+								$(this).addClass("layui-this");
+								$(this).show();
+								pd = false;
+							}
+						})
+						if(pd) {
+							var li = "<li class='layui-this layLoading' lay-id='" + tid + "' lay-html='" + tp + "'><span class='colors'>" +
+								"<i class='layui-icon colors'>&#xe638;</i>" + $(e.target).find(".leftNav_name").val() + "</span>" +
+								"<i class='layui-icon layui-unselect layui-tab-close tabClose'>ဆ</i></li>";
+
+							$("#layuiTab").append($(li));
+						}
+						
+						
+					/*计算选项卡长度溢出
+					 * var allwidth= $("#layuiTab").width()+300;
+						var temp=0;
+						$.each($("#layuiTab .layLoading"), function() {
+							temp+=$(this).width();
+						});
+						if(allwidth<temp){
+							
+						}else{
+						
+						}
+						*/
+						$("#iframe").attr("src", tp)
+					}
+				},
+				created: function() {
+					//菜单数据源   menuJson.js
+					this.leftNavs = convert(leftNav);
+					//颜色数据源   colorCss.js
+					this.colors = colors;
+				}
+			});
+
+			$(document).on("click", ".tabClose", function(event) {
+				//防止事件向上传递
+				event.stopImmediatePropagation(); //IE
+				event.stopPropagation();
+				$("#layuiTab").children().each(function() {
+
+					$(this).removeClass("layui-this");
+				})
+				$(this).parent().prev().addClass("layui-this");
+				var ty = $(this).parent().prev().attr("lay-html");
+				$("#iframe").attr("src", ty);
+				$(this).parent().hide();
+			})
+
+			$(document).on("click", ".layLoading", function() {
+
+				$(this).addClass("layui-this");
+				var ty = $(this).attr("lay-html");
+				$("#iframe").attr("src", ty);
+			})
+
+			//屏蔽Tab右键菜单
+			$(document).on('contextmenu', '.layLoading', function() {
+				return false;
+			})
+
+			$(document).on("contextmenu", ".layLoading:nth-of-type(n+2)", function(e) {
+
+				var popupmenu = $(".rightmenu");
+				popupmenu.attr("index", $(this).index())
+				l = ($(document).width() - e.clientX) < popupmenu.width() ? (e.clientX - popupmenu.width()) : e.clientX;
+				t = ($(document).height() - e.clientY) < popupmenu.height() ? (e.clientY - popupmenu.height()) : e.clientY;
+				popupmenu.css({
+					left: l,
+					top: t
+				}).show();
+				return false;
+			})
+		</script>
+
+		<ul class="rightmenu" index="0">
+			<li data-type="closethis">关闭当前</li>
+			<li data-type="closeall">关闭所有</li>
+			<li data-type="closeothers">关闭非当前</li>
+			<li data-type="closeleft">关闭左侧所有</li>
+			<li data-type="closeright">关闭右侧所有</li>
+			<!--	<li data-type="show">显示更多</li>-->
+		</ul>
+	</body>
+
+</html>
