@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<link href="/css/public.css" rel="stylesheet">
+		<title></title>
+	</head>
+	
+<BODY class=oneColLiqCtrHdr>
+	<DIV id=container>
+    <DIV id=header>
+        <H1>鉴定申请<BR></H1>
+        <form method="get" name="searchform" action="/lt/getAppraisal">
+            <TABLE border=0 class="tablesorter" cellSpacing=1 cellPadding=6 width="100%">
+                <TBODY>
+                <TR>
+                    <TD >
+                    用户名:<input name="userName" type="text" id="name" size="15" maxlength="20" style="width: 120px;height:15px;outline:none; border-radius:5px;">
+					状态:
+                  <select name="auditStatus" id="status" style="width: 120px;height:20px;outline:none; border-radius:5px;">
+                    <option value="0">所有</option>
+                    <option value="1">待审核</option><option value="2">审核通过</option><option value="3">未通过</option>                  </select>
+                  <input type="submit" name="button" class="ys" id="button" value="搜索"></TD>
+                    <TD >  <input type="hidden" name="s" value="10"> <input type="hidden" name="p" value="1">&nbsp;</TD>
+                </TR>
+                </TBODY>
+            </TABLE>
+        	</form>
+    </DIV>
+    <DIV id="mainContent"><BR>
+        <FORM method=post name=form2 action="" id="listform">
+            <TABLE id="itemlist" class="table" border=0 cellSpacing=1 cellPadding=6 width="100%">
+                <THEAD>
+                <TR>
+                    <th width="80">序号</th>
+                    <TH width="80" scope=col align=center>用户</TH>
+                    <TH width="80" scope=col align=center>类型</TH>
+                    <TH width="80" align=center>姓名</TH>
+                    <TH width="80" align=center>性别</TH>
+                    <TH width="80" align=center>联系电话</TH>
+                    <TH scope=col >提交时间</TH>
+                    <TH scope=col >审核状态</TH>
+                    <TH scope=col >审核时间</TH>
+                    <TH width="8%" align="center" scope=col>&nbsp;</TH>
+                </TR>
+                </THEAD>
+                <tbody>
+                    <tr th:each="temp,iterState:${PAGE_INFO.list}">
+                        <td align="center">[[${iterState.count}]]</td>
+                        <td align="center" nowrap th:text="${temp.userName}"></td>
+                        <td align="center" nowrap th:text="${temp.stName}">微整形</td>
+                        <td align="center" nowrap th:text="${temp.userRealName}"></td>
+                        <td align="center" nowrap><span th:if="${temp.userSex==1}">男</span>
+								<span th:if="${temp.userSex==2}">女</span> </td>
+                        <td align="center" nowrap th:text="${temp.userPhone}">13974104983</td>
+                        <td align="center" nowrap th:text="${#dates.format(temp.submitTime,'yyyy-MM-dd HH:mm')}">2018-10-07 10:05</td>
+                        <td align="center" nowrap><span th:if="${temp.auditStatus==1}">待审核</span>
+								<span th:if="${temp.auditStatus==2}" style="color:green">已通过</span>
+								<span th:if="${temp.auditStatus==3}" style="color:red">未通过</span></td>
+                        <td align="center" nowrap  th:text="${#dates.format(temp.auditTime,'yyyy-MM-dd HH:mm')}"></td>
+                        <td nowrap align=center>
+                        <a th:href="@{/lt/queryAppByID(userID=${temp.userID})}">查看</a>
+                        </td></tr>
+                    </tbody>            </TABLE>
+            <TABLE id="itemlist" class="tablesorter" border=0 cellSpacing=1 cellPadding=6 width="100%">
+                <tfoot>
+						<tr>
+							<th colspan="12"><a
+								th:href="@{/lt/getAppraisal(p=1,s=${PAGE_INFO.pageSize},userName=${userName},auditStatus=${auditStatus})}">首页</a>
+								&nbsp;&nbsp; <a th:if="${PAGE_INFO.isHasPreviousPage()}"
+								th:href="@{/lt/getAppraisal(p=${PAGE_INFO.prePage},s=${PAGE_INFO.pageSize},userName=${userName},auditStatus=${auditStatus})}">上一页</a>
+								&nbsp;&nbsp; <a th:if="${PAGE_INFO.isHasNextPage()}"
+								th:href="@{/lt/getAppraisal(p=${PAGE_INFO.nextPage},s=${PAGE_INFO.pageSize},userName=${userName},auditStatus=${auditStatus})}">下一页</a>
+								&nbsp;&nbsp; <a
+								th:href="@{/lt/getAppraisal(p=${PAGE_INFO.lastPage},s=${PAGE_INFO.pageSize},userName=${userName},auditStatus=${auditStatus})}">末页</a>
+							</th>
+						</tr>
+					</tfoot>
+
+          </TABLE>
+</FORM>
+        <H4>&nbsp;</H4><!-- end #mainContent --></DIV>
+        <DIV id=footer>
+        <P>&nbsp;</P><!-- end #footer --></DIV><!-- end #container --></DIV></BODY>
+</html>

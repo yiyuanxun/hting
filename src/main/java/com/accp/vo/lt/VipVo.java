@@ -18,7 +18,14 @@ public class VipVo {
 	private int merchantType;
 	private String adDetail;
 	private Date recentEntry;
+	private boolean mailboxVerification;
 	
+	public boolean isMailboxVerification() {
+		return mailboxVerification;
+	}
+	public void setMailboxVerification(boolean mailboxVerification) {
+		this.mailboxVerification = mailboxVerification;
+	}
 	public Date getRecentEntry() {
 		return recentEntry;
 	}
@@ -43,6 +50,7 @@ public class VipVo {
 	public void setUserID(int userID) {
 		this.userID = userID;
 	}
+
 	public String getUserName() {
 		return userName;
 	}

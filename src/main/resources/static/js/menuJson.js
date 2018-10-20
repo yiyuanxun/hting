@@ -1,10 +1,5 @@
 /*leftNav_id不可重复、以下属性名不可更改，否则页面要进行相应调整*/
-var leftNav = [{
-	"text": "后台首页",
-	"leftNav_id": "1",
-	"name": "后台处理",
-	"href": "html/htcl.html"
-}, {
+var leftNav = [ {
 	"text": "论坛管理",
 	"leftNav_id": "2",
 	"name": "帖子管理	",
@@ -68,7 +63,7 @@ var leftNav = [{
 	"text": "会员管理",
 	"leftNav_id": "14",
 	"name": "会员审核",
-	"href": "/lt/getList?p=1&s=2&username=0"
+	"href": "/lt/getList?p=1&s=10&userName=0"
 }, {
 	"text": "会员管理",
 	"leftNav_id": "15",
@@ -78,24 +73,20 @@ var leftNav = [{
 	"text": "会员管理",
 	"leftNav_id": "16",
 	"name": "商家入驻",
-	"href": "html/Merchants-move-in.html"
+	"href": "/lt/getAllShop?p=1&s=10&userName=0&merchantType=0&auditStatus=0"
 }
-
 , {
 	"text": "会员管理",
 	"leftNav_id": "17",
 	"name": "鉴定审核",
-	"href": "html/Appraisal-audit.html"
+	"href": "/lt/getAppraisal?p=1&s=10&userName=0&auditStatus=0"
 }
-
 , {
 	"text": "会员管理",
 	"leftNav_id": "18",
 	"name": "商家推荐",
 	"href": "html/Merchant-recommendation.html"
 }
-
-
 , {
 	"text": "会员管理",
 	"leftNav_id": "19",

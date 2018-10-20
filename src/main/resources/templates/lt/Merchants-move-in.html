@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<link href="/css/public.css" rel="stylesheet">
+		<title>商家入驻</title>
+	</head>
+
+<BODY class=oneColLiqCtrHdr>
+<DIV id=container>
+    <DIV id=header>
+        <H1>商家入驻<BR></H1>
+        <form method="get" name="searchform" action="/lt/getAllShop">
+            <TABLE border=0 class="table" cellSpacing=1 cellPadding=6 width="100%">
+                <TBODY>
+                <TR>
+                    <TD >
+                    用户昵称:
+                      <input name="userName"  type="text" style="width: 120px;height:15px;outline:none; border-radius:5px;" size="15" maxlength="10" />
+                  会员组:
+                  <select name="merchantType" id="group_id" style="width: 120px;height:20px;outline:none; border-radius:5px;">
+                    <option value="0">所有</option>
+                    <option value="1">大陆商家用户</option><option value="2">海外商家用户</option>                  </select>
+                                    审核状态:
+                  <select name="auditStatus" id="zt_disagree" style="width: 120px;height:20px;outline:none; border-radius:5px;">
+                    <option value="0">所有</option>
+                    <option value="1">审核中</option><option value="2">审核通过</option><option value="3">审核未通过</option></select>
+                    <input type="hidden" name="s" value="10">
+                    <input type="hidden" name="p" value="1">
+				  <input type="submit" class="ys" name="button" id="button" value="搜索"> <input type="submit" class="ys" name="export" id="button" value="导出 ">
+				  
+				  </TD>
+                    <TD >&nbsp;</TD>
+                </TR>
+                </TBODY>
+            </TABLE>
+        <input type="hidden" name="__hash__" value="3d1887acffdedce1e90af7aa9785fdec_9c88f80bbedd0c6bca99628f81a495a0" /></form>
+    </DIV>
+    <DIV id="mainContent"><BR>
+        <FORM method="post" name="form2" action="" id="listform">
+            <TABLE id="itemlist" class="table" border=0 cellSpacing=1 cellPadding=6 width="100%">
+                <THEAD>
+                <TR>
+					<!--
+                    <th width="50">&nbsp;</th>
+					-->
+                    <th width="50" bgcolor="#ffffff">序号</th>
+                    <TH width="80" scope=col align=center>用户昵称</TH>
+                    <TH width="11%" scope=col align=center>店铺名称</TH>
+                    <TH width="11%" scope=col align=center>邮箱</TH>
+                    <TH width="80" scope=col align=center>真实姓名</TH>
+                    <TH width="11%" scope=col align=center>QQ</TH>
+                    <TH width="80" align=center>微信</TH>
+                    <TH width="35" align=center>身份证</TH>
+                    <TH width="35" align=center>申请类别</TH>
+                    <TH width="80" align=center scope=col>状态</TH>
+                  <TH width="" scope=col align=center>申请时间</TH>
+                  <TH  scope=col>&nbsp;</TH>
+                </TR>
+                </THEAD>
+                    <tbody>
+                    
+                <tr th:each="temp,iterState:${PAGE_INFO.list}">
+						<!--
+                        <td align="center"><input  value="318" type="checkbox" name="userid[]"></td>
+						-->
+                        <td align="center" bgcolor="#ffffff">[[${iterState.count}]]</td>
+                        <td align="center" nowrap th:text="${temp.username}">yuno4214</td>
+                        <td align="center" nowrap th:text="${temp.shopname}">1</td>
+                        <td align="center" nowrap th:text="${temp.contactmailbox}"></td>
+                        <td align="center" nowrap th:text="${temp.userrealname}">1</td>
+                        <td align="center" nowrap th:text="${temp.qq}"></td>
+                        <td align="center" nowrap th:text="${temp.wechat}"></td>
+                        <td align="center" nowrap th:text="${temp.identitynumder}">430821201611121382</td>
+                        <td align="center" nowrap><span th:if="${temp.merchanttype==0}">普通会员</span>
+								<span th:if="${temp.merchanttype==1}">大陆商家用户</span> <span
+								th:if="${temp.merchanttype==2}">海外商家用户</span></td>
+                        <td align="center" nowrap><span th:if="${temp.auditstatus==1}">待审核</span>
+								<span th:if="${temp.auditstatus==2}" style="color:green">已通过</span> <span
+								th:if="${temp.auditstatus==3}" style="color:red">未通过</span></td>
+                        <td align="center" nowrap th:text="${#dates.format(temp.userregistrationtime,'yyyy-MM-dd HH:mm')}">1970-01-01 08:33</td>
+                        <td nowrap align="center">
+                        <a th:href="@{/lt/queryShopUserByID(userID=${temp.userid})}">查看</a>　
+                        </td>
+                    </tr>
+                                        </tbody>
+                </TABLE>
+            <TABLE id="itemlist" class="tablesorter" border=0 cellSpacing=1 cellPadding=6 width="100%" style="display:none;">
+<TR>
+                    <TD colspan="8"><div class="digg"><div>  <span class="current">1</span><a class="num" href="/index.php/Admincp/Feedback/apply/p/2.html">2</a><a class="num" href="/index.php/Admincp/Feedback/apply/p/3.html">3</a><a class="num" href="/index.php/Admincp/Feedback/apply/p/4.html">4</a> <a class="next" href="/index.php/Admincp/Feedback/apply/p/2.html">下一页</a> </div></div></td>
+              </TR>
+                <TR>
+                    <TD colspan="10">
+                        <table width="100%" border="0">
+                            <tr>
+                                <td width="33%" nowrap><INPUT id="select" value="选择所有" type=button name="select">
+                                    <INPUT id="delete" value="删除所选" type="submit" name="delete" onClick="return confirm('是否删除选择的会员?');">
+                                    <!--
+									<INPUT id="blacklist" value="设置资料需要审核" type="submit" name="needcheck" onClick="return confirm('是否对选择的会员设置资料需要审核?');">
+									<INPUT id="blacklist" value="设置资料不需要审核" type="submit" name="noneedcheck" onClick="return confirm('是否对选择的会员设置资料需要审核?');">                                    
+                                    <INPUT id="blacklistno" value="取消黑名单" type="submit" name="blacklistno" onClick="return confirm('是否对选择的会员取消黑名单?');">
+                                    -->
+                                    </td>
+                                <td width="67%" nowrap></td>
+                            </tr>
+                        </table>
+                    </td>
+                </TR>
+          </TABLE>
+          <TABLE id="itemlist" class="tablesorter" border=0 cellSpacing=1
+					cellPadding=6 width="100%">
+					<TR>
+						<th colspan="8"><a
+								th:href="@{/lt/getAllShop(p=1,s=${PAGE_INFO.pageSize},userName=${userName},auditStatus=${auditStatus},merchantType=${merchantType})}">首页</a>
+								&nbsp;&nbsp; <a th:if="${PAGE_INFO.isHasPreviousPage()}"
+								th:href="@{lt/getAllShop(p=${PAGE_INFO.prePage},s=${PAGE_INFO.pageSize},userName=${userName},auditStatus=${auditStatus},merchantType=${merchantType})}">上一页</a>
+								&nbsp;&nbsp; <a th:if="${PAGE_INFO.isHasNextPage()}"
+								th:href="@{/lt/getAllShop(p=${PAGE_INFO.nextPage},s=${PAGE_INFO.pageSize},userName=${userName},auditStatus=${auditStatus},merchantType=${merchantType})}">下一页</a>
+								&nbsp;&nbsp; <a
+								th:href="@{/lt/getAllShop(p=${PAGE_INFO.lastPage},s=${PAGE_INFO.pageSize},userName=${userName},auditStatus=${auditStatus},merchantType=${merchantType})}">末页</a>
+							</th>
+					</TR>
+					<TR>
+					</TR>
+
+				</TABLE>
+</FORM>
+        <H4>&nbsp;</H4><!-- end #mainContent --></DIV>
+        <DIV id=footer>
+        <P>&nbsp;</P><!-- end #footer --></DIV><!-- end #container --></DIV></BODY>
+</html>

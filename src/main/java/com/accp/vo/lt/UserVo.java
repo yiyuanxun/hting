@@ -14,7 +14,35 @@ public class UserVo {
 	private String userPhone;
 	private Date recentEntry;
 	private String shopName;
+	private Boolean mailboxVerification;
+	private String contactMailbox;
+	private String merchantEmail;
+	private int businessState;
 	
+	public int getBusinessState() {
+		return businessState;
+	}
+	public void setBusinessState(int businessState) {
+		this.businessState = businessState;
+	}
+	public String getMerchantEmail() {
+		return merchantEmail;
+	}
+	public void setMerchantEmail(String merchantEmail) {
+		this.merchantEmail = merchantEmail;
+	}
+	public String getContactMailbox() {
+		return contactMailbox;
+	}
+	public void setContactMailbox(String contactMailbox) {
+		this.contactMailbox = contactMailbox;
+	}
+	public Boolean getMailboxVerification() {
+		return mailboxVerification;
+	}
+	public void setMailboxVerification(Boolean mailboxVerification) {
+		this.mailboxVerification = mailboxVerification;
+	}
 	public String getShopName() {
 		return shopName;
 	}

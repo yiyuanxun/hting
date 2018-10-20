@@ -1,197 +1,38 @@
 <!DOCTYPE html PUBLIC '-//W3C//DTD HTML 4.01 Strict//EN' 'http://www.w3.org/TR/html4/strict.dtd'>
-<html>
+<html  xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
-<title>在此插入标题</title>
+<link href="/css/public.css" rel="stylesheet">
+<title>会员信息</title>
 </head>
-<style>
 
-body { 
-font: normal 11px auto "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; 
-color: #4f6b72; 
-background: #E6EAE9; 
-} 
- 
-a { 
-color: #c75f3e; 
-text-decoration: none;
-} 
-
-.ys {
-    display: inline-block;
-    padding: .3em .5em;
-    background-image: linear-gradient(#ddd, #bbb);
-    border: 1px solid rgba(0,0,0,.2);
-    border-radius: .3em;
-    box-shadow: 0 1px white inset;
-    text-align: center;
-    text-shadow: 0 1px 1px black;
-    color:white;
-    font-weight: bold;
-}
-.ys:active{
-    box-shadow: .05em .1em .2em rgba(0,0,0,.6) inset;
-    border-color: rgba(0,0,0,.3);
-    background: #bbb;
-}
---------------------- 
-作者：An丶 
-来源：CSDN 
-原文：https://blog.csdn.net/AnPHPer/article/details/79480097?utm_source=copy 
-版权声明：本文为博主原创文章，转载请附上博文链接！
- 
-#mytable { 
-text-align:center;
-padding: 0; 
-margin: 0; 
-} 
- 
-caption { 
-padding: 0 0 5px 0; 
-width: 700px; 
-font: italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; 
-text-align: right; 
-} 
- 
-th { 
-font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; 
-color: #4f6b72; 
-border-right: 1px solid #C1DAD7; 
-border-bottom: 1px solid #C1DAD7; 
-border-top: 1px solid #C1DAD7; 
-letter-spacing: 2px; 
-text-transform: uppercase; 
-text-align: left; 
-padding: 6px 6px 6px 12px; 
-background: #CAE8EA  no-repeat; 
-text-align: center;
-} 
-/*power by www.winshell.cn*/ 
-th.nobg { 
-border-top: 0; 
-border-left: 0; 
-border-right: 1px solid #C1DAD7; 
-background: none; 
-} 
- 
-td { 
-border-right: 1px solid #C1DAD7; 
-border-bottom: 1px solid #C1DAD7; 
-background: #fff; 
-font-size:11px; 
-padding: 6px 6px 6px 12px; 
-color: #4f6b72; 
-} 
-/*power by www.winshell.cn*/ 
- 
-td.alt { 
-background: #F5FAFA; 
-color: #797268; 
-} 
- 
-th.spec { 
-border-left: 1px solid #C1DAD7; 
-border-top: 0; 
-background: #fff no-repeat; 
-font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; 
-} 
- 
-th.specalt { 
-border-left: 1px solid #C1DAD7; 
-border-top: 0; 
-background: #f5fafa no-repeat; 
-font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; 
-color: #797268; 
-} 
-/*---------for IE 5.x bug*/ 
-html>body td{ font-size:11px;} 
-body,td,th { 
-font-family: 宋体, Arial; 
-font-size: 12px; 
-
---------------------- 
-作者：Clear_Love 
-来源：CSDN 
-原文：https://blog.csdn.net/sminhrosunny/article/details/6625790?utm_source=copy 
-版权声明：本文为博主原创文章，转载请附上博文链接！
-
-/* table {
-	border-collapse: collapse;
-	margin: 0 auto;
-	text-align: center;
-}
-
-table td, table th {
-	border: 1px solid #cad9ea;
-	color: #666;
-	height: 30px;
-}
-
-table thead th {
-	background-color: #CCE8EB;
-	width: 100px;
-}
-
-table tr:nth-child(odd) {
-	background: #fff;
-}
-
-table tr:nth-child(even) {
-	background: #F5FAFA;
-}
----------------------
-作者：RoyanWang
-来源：CSDN
-原文：https
-:
-/
-/
-blog.csdn.net
-/
-hello_mr_anan
-/
-article
-/
-details
-/
-70257627
-?
-utm_source
-=
-copy
-版权声明：本文为博主原创文章，转载请附上博文链接！ */
-
-
-
-</style>
 <body class="oneColLiqCtrHdr">
 <div id=container>
   <div id="header">
     <H3>会员信息</H3>
   </DIV>
   <DIV id="mainContent"><BR>
-    <form action="" method="POST" enctype="multipart/form-data" name="form1" id="form10">
+    <form action="/lt/updateShopVip" method="POST" enctype="multipart/form-data" name="form1" id="form10">
       <TABLE border=0 cellSpacing=1 cellPadding=6 width="100%" class="table">
         <TBODY>
           <TR>
             <TD width="18%" align=right noWrap><strong>会员组:</strong></TD>
             <TD  width="32%" noWrap>
-              <label for="group_id"></label>
-              大陆商家用户                <select name="group_id" id="group_id" style="display:none;">
-                  <option value="1" >普通会员</option><option value="2" selected>大陆商家用户</option><option value="3" >海外商家用户</option>              </select>
+			<span th:if="${data.merchanttype==1}">大陆商家用户</span> <span
+			th:if="${data.merchanttype==2}">海外商家用户</span>
             </TD>
             <TD width="18%" noWrap align=right>&nbsp;</TD>
             <TD width="32%" noWrap>&nbsp;</TD>
           </TR>
           <TR>
             <TD  align=right noWrap>用户名:</TD>
-            <TD  >yuno4214</TD>
-            <TD  align=right>密码:</TD>
-            <TD  ><input id="password" size=20 type="text" name="password" value="" style="width: 120px;height:15px;outline:none; border-radius:5px;"></TD>
+            <TD th:text="${data.username}">yuno4214</TD>
+            <TD  align=right></TD>
+            <TD  ></TD>
           </TR>
           <TR>
             <TD align=right noWrap>手机:</TD>
-            <TD ><input name="mobile" type="text" class="" id="mobile" value="" maxlength="13" style="width: 120px;height:15px;outline:none; border-radius:5px;"></TD>
+            <TD ><input name="userphone" type="text" class="" id="mobile" th:value="${data.userphone}" maxlength="13" style="width: 120px;height:15px;outline:none; border-radius:5px;"></TD>
             <TD align=right>邮箱:</TD>
             <TD >			<!--
 			<input name="email" type="text" id="email" value="" size=40  class="validate[required,custom[email]]">
@@ -200,26 +41,27 @@ copy
           </TR>
           <TR>
             <TD align=right>真实姓名:</TD>
-            <TD ><input name="truename" type="text" id="truename" value="1" size=20  class="" style="width: 120px;height:15px;outline:none; border-radius:5px;"></TD>
+            <TD ><input name="userrealname" type="text" id="truename" th:value="${data.userrealname}" size=20  class="" style="width: 120px;height:15px;outline:none; border-radius:5px;"></TD>
             <TD align=right>性别:</TD>
             <TD >
               <label>
-                <input name="sex" type="radio" id="check_0" value="男" >男</label>
+                <input name="usersex" type="radio" id="nan" value="1" >男</label>
               <label>
-                <input type="radio" name="sex" value="女" id="check_1" checked>女</label>
+                <input type="radio" name="usersex" value="2" id="nv">女</label>
             </TD>
           </TR>
           <TR>
             <TD align=right>住址:</TD>
-            <TD colspan="3"  ><select class="sel_f sel_f2 sel_b2" name="countryid" style="width: 120px;height:20px;outline:none; border-radius:5px;">
-					<option value="399" >中国</option><option value="400" selected>韩国</option><option value="1023" >测试地址</option>				</select>
-				<select class="sel_f sel_f2 sel_b2" name="shengid" id="shengid" style="width: 120px;height:20px;outline:none; border-radius:5px;">
+            <TD colspan="3"  ><select th:value="${data.country}" class="sel_f sel_f2 sel_b2" name="country" style="width: 120px;height:20px;outline:none; border-radius:5px;">
+					<option value="399" >中国</option><option value="400" selected>韩国</option><option value="1023" >测试地址</option>				
+					</select>
+				<select th:value="${data.provincialid}" class="sel_f sel_f2 sel_b2" name="provincialid" id="shengid" style="width: 120px;height:20px;outline:none; border-radius:5px;">
 					<option value="0">省</option>
-					<option value="401" >首尔特别市</option><option value="402" selected>釜山广域市</option><option value="403" >大邱广域市</option><option value="404" >仁川广域市</option><option value="405" >光州广域市</option><option value="406" >大田广域市</option><option value="407" >蔚山广域市</option><option value="408" >济州特别自治道</option><option value="409" >江原道</option><option value="410" >庆尚北道</option><option value="411" >庆尚南道</option><option value="412" >忠清北道</option><option value="413" >忠清南道</option><option value="414" >全罗北道</option><option value="415" >全罗南道</option><option value="416" >京畿道</option><option value="592" >世宗特别自治市</option>				</select>
-			  <select class="sel_f sel_f2 sel_b2" name="areaid" id="areaid"  style="width: 120px;height:20px;outline:none; border-radius:5px;">
+				</select>
+			  <select th:value="${data.cityid}" class="sel_f sel_f2 sel_b2" name="cityid" id="areaid"  style="width: 120px;height:20px;outline:none; border-radius:5px;">
 					<option value="0">市</option>
-                    <option value="651" >中 区</option><option value="652" selected>西 区</option><option value="653" >东 区</option><option value="654" >东 区</option><option value="655" >影 岛 区</option><option value="656" >釜山鎭区</option><option value="657" >东 莱 区</option><option value="658" >南 区</option><option value="659" >北 区</option><option value="660" >海云台区</option><option value="661" >沙 下 区</option><option value="662" >金 井 區</option><option value="663" > 江 西 区</option><option value="664" >蓮 堤 区</option><option value="665" > 水 营 区</option><option value="666" >沙 上 区</option><option value="667" >機 張 郡</option>			  </select>
-				<input name="address" type="text" class="input_c inf_inc" id="address" value="1231" size="50"style="width: 200px;height:15px;outline:none; border-radius:5px;"/>
+                    </select>
+				<input name="addetail" type="text" class="input_c inf_inc" id="address" th:value="${data.addetail}" size="50"style="width: 200px;height:15px;outline:none; border-radius:5px;"/>
             </TD>
           </TR>
         </tbody>
@@ -234,19 +76,31 @@ copy
           </TR>
 			<TR>
 			  <TD noWrap align=right>店铺名称:</TD>
-			  <TD >1</TD>
+			  <TD th:text="${data.shopname}">1</TD>
 			  <TD align="right">保证金:</TD>
 		
-        <TD >500 &nbsp;<input id="kbzj" type="text" name="deposit" value="500" style="width: 120px;height:15px;outline:none; border-radius:5px;"><a href="javascript:void(0)" onclick="kcbzj('318')" >扣除保证金</a></TD>
+        <TD >[[${data.guaranteemoney}]] &nbsp;<input id="kbzj" type="text" name="guaranteemoney" th:value="${data.guaranteemoney}" style="width: 120px;height:15px;outline:none; border-radius:5px;">
+        <a href="javascript:void(0)" th:onclick="|kcbzj(${data.userid})|" >扣除保证金</a></TD>
 		  </TR> 
 			<TR>
             <TD noWrap align=right>服务类别:</TD>
             <TD colspan="3" >
-            韩语翻译,            </TD>
+            <span th:if="${data.firstserviceid==1}">韩语翻译,</span>
+            <span th:if="${data.firstserviceid==2}">自驾游,</span>
+            <span th:if="${data.firstserviceid==3}">学习资料,</span>
+            <span th:if="${data.firstserviceid==4}">微整形,</span>
+            <span th:if="${data.firstserviceid==5}">留学中介,</span>
+            
+            <span th:if="${data.secondserviceid==1}">韩语翻译</span>
+            <span th:if="${data.secondserviceid==2}">自驾游</span>
+            <span th:if="${data.secondserviceid==3}">学习资料</span>
+            <span th:if="${data.secondserviceid==4}">微整形</span>
+            <span th:if="${data.secondserviceid==5}">留学中介</span>
+            	</TD>
           </TR>
           <TR>  
 			  <TD noWrap align=right>身份证:</TD>
-			  <TD colspan="3" >身份证：430821201611121382</TD>
+			  <TD colspan="3" th:text="${data.identitynumder}"></TD>
 		  </TR>
           			<TR>
 			  <TD noWrap align=right>证件正面:</TD>
@@ -260,38 +114,37 @@ copy
               <a href="/Uploads/image/2018-10/20181007110446-52503.jpg" target="_blank"><img src="/Uploads/image/2018-10/20181007110446-52503.jpg" width="150" /></a>
               </TD>
 			  <TD align="right">服务语言:</TD>
-			  <TD >韩语</TD>
+			  <TD th:text="${data.languagenametext}">韩语</TD>
 		  </TR>
 			<TR>
 			  <TD noWrap align=right>擅长专业:</TD>
-			  <TD >
-              人口学,              </TD>
+			  <TD th:text="${data.majornametext}">
+            	 </TD>
 			  <TD align="right">所在城市:</TD>
-			  <TD >首尔特别市</TD>
+			  <TD th:text="${data.livecityid}">首尔特别市</TD>
 		  </TR>
 			<TR>
 			  <TD noWrap align=right>QQ:</TD>
-			  <TD ></TD>
+			  <TD th:text="${data.qq}"></TD>
 			  <TD align="right">微信:</TD>
-			  <TD ></TD>
+			  <TD th:text="${data.wechat}"></TD>
 		  </TR>
 			<TR>
 			  <TD noWrap align=right>职业:</TD>
 			  <TD ></TD>
 			  <TD align="right">身高:</TD>
-			  <TD >CM</TD>
+			  <TD >[[${data.height}]]CM</TD>
 		  </TR>
 			<TR>
 			  <TD noWrap align=right>星座:</TD>
-			  <TD >白羊座</TD>
+			  <TD th:text="${data.constellation}">白羊座</TD>
 			  <TD align="right">年龄:</TD>
-			  <TD >0</TD>
+			  <TD th:text="${data.age}">0</TD>
 		  </TR>
 			<TR>
 			  <TD noWrap align=right>自我介绍:</TD>
-			  <TD colspan="3" >qwe</TD>
+			  <TD colspan="3" th:text="${data.selfintroduction}">qwe</TD>
 		  </TR>
-
           <TR>
             <TD align="right">店铺免费体验:</TD>
             <!--<td ><INPUT  type="radio" name="SHOP_FREE_STATUS" class="input-heigt" value="1"  >是-->
@@ -300,7 +153,7 @@ copy
             <td >否            </td>
             <td align="right" noWrap>店铺免费体验月数：</td>
             <td  >
-              <select id="free_time"  type="text" name="free_time" class="input-heigt" style="width: 120px;height:20px;outline:none; border-radius:5px;">
+              <select id="free_time" name="free_time" class="input-heigt" style="width: 120px;height:20px;outline:none; border-radius:5px;">
                 <option value="1"> 1</option>
                 <option value="2"> 2</option>
                 <option value="3"> 3</option>
@@ -321,35 +174,21 @@ copy
             <TD noWrap align=right>店铺状态:</TD>
             <TD colspan="3" >
               <label>
-                <input name="shopstatus" type="radio" value="1" checked>开启</label>
+                <input name="businessstate" type="radio" value="1" id="kai" >开启</label>
               <label>
-                <input type="radio" name="shopstatus" value="2"  >暂停</label>
+                <input type="radio" name="businessstate" value="2" id="zan" >暂停</label>
               <label>
-                <input type="radio" name="shopstatus" value="0"  >关闭</label>
+                <input type="radio" name="businessstate" value="3" id="guan" >关闭</label>
             </TD>
             <!--<TD align="right">&nbsp;</TD>-->
             <!--<TD >&nbsp;</TD>-->
           </TR>
-          <TR style="display:;">
-            <TD noWrap align=right>暂停时间:</TD>
-            <TD> </TD>
-            <TD noWrap align=right>关闭时间:</TD>
-            <TD> </TD>
-          </TR>
 
           <TR style="display:;">
-            <TD noWrap align=right>店铺暂停理由:</TD>
-            <TD colspan="3" align="left">
-              <textarea rows="2"  name="pausereason"  cols="100%" style="width: 650px;height:30px;outline:none; border-radius:5px;">
-                              </textarea>
-            </TD>
-          </TR>
-
-          <TR style="display:;">
-            <TD noWrap align=right>店铺光闭理由:</TD>
+            <TD noWrap align=right>店铺关闭理由:</TD>
             <TD colspan="3" align="left">
               <textarea  rows="2" name="stopreason" cols="100%" style="width: 650px;height:30px;outline:none; border-radius:5px;">
-                             </textarea>
+                   [[${data.reason}]]          </textarea>
             </TD>
           </TR>
 
@@ -358,14 +197,14 @@ copy
         <TBODY>
 			<TR>
             <TD width="18%" align=right noWrap> 注册时间:</TD>
-            <TD  width="32%">
+            <TD  width="32%" th:text="${#dates.format(data.userregistrationtime,'yyyy-MM-dd HH:mm')}">
             2018-10-07 10:25            </TD>
             <TD  width="18%" align="right">注册 IP:</TD>
             <TD  width="32%" >43.250.200.107</TD>
           </TR>
           <TR>
             <TD noWrap align=right>最后登录时间:</TD>
-            <TD >
+            <TD  th:text="${#dates.format(data.recententry,'yyyy-MM-dd HH:mm')}">
               2018-10-11 22:33            </TD>
             <TD align="right">最后登录IP:</TD>
             <TD ></TD>
@@ -375,19 +214,19 @@ copy
 			  <TD noWrap align=right>资料审核:</TD>
 			  <TD >
               <label>
-                <input name="zt" type="radio" id="check_0" value="1" checked>已通过审核</label>
+                <input name="auditstatus" type="radio" id="tg" value="2" >已通过审核</label>
               <label>
-                <input type="radio" name="zt" value="0" id="check_1" >未通过审核</label></TD>
+                <input type="radio" name="auditstatus" value="3" id="bg" >未通过审核</label></TD>
             <TD noWrap align=right>邮箱验证:</TD>
             <TD >
               <label>
-                <input name="check" type="radio" id="check_0" value="1" >已通过验证</label>
+                <input name="mailboxverification" type="radio" id="em_tg" value="1" >已通过验证</label>
               <label>
-                <input type="radio" name="check" value="0" id="check_1" checked>未通过验证</label>
+                <input type="radio" name="mailboxverification" value="0" id="em_bg" >未通过验证</label>
             </TD>
 		  </TR>
-
-            <TD><input type="hidden" name="userid" value="318"></TD>
+			<tr>
+            <TD><input type="hidden" name="userid" th:value="${data.userid}"></TD>
             <TD colspan="3" >
               <INPUT id=button3 value="   保存     " type=submit name=button3 class="button white">　
               <INPUT class="button white" id="add" value="返回" type=button name="add" onClick="history.go(-1)">
@@ -395,52 +234,65 @@ copy
           </tr>
         </tbody>
       </table>
-    <input type="hidden" name="__hash__" value="08e8996fce2b0544d7d6aa8726339216_26b439a36fcba2bb96dbfe2f5ab2380d" /></form>
+    </form>
     <p>&nbsp;</p>
   </div>
   
 </div>
-<script src="/Public/js/datepicker/WdatePicker.js"></script>
+<script src="../js/jquery-1.12.4.js"></script>
+
 <script type="text/javascript">
-	/*
-	KindEditor.create('#desc', {
-		uploadJson : '/index.php/General/Editor/upload.html',
-		fileManagerJson : '/index.php/General/Editor/manager.html',
-		allowFileManager : false,
-		filterMode : false,
-		urlType : 'domain'
-	});
-	*/
-</script>
-<script type="text/javascript">
-  $('#free_time').val();
+
+$(function(){
+	
+	if([[${data.usersex}]]==1){
+		$("#nan").attr("checked","checked");
+	}else{
+		$("#nv").attr("checked","checked");
+	}
+	
+	if([[${data.auditstatus}]]==2){
+		$("#tg").attr("checked","checked");
+	}else{
+		$("#bg").attr("checked","checked");
+	}
+	
+	if([[${data.mailboxverification}]]==true){
+		$("#em_tg").attr("checked","checked");
+	}else{
+		$("#em_bg").attr("checked","checked");
+	}
+	
+	if([[${data.businessstate}]]==1){
+		$("#kai").attr("checked","checked");
+	}else if([[${data.businessstate}]]==2){
+		$("#zan").attr("checked","checked");
+	}else{
+		$("#guan").attr("checked","checked");
+	}
+
+});
+
+
   function kcbzj(id){
-    var test = window.location.href;
-    var data ={};
      var  val = $('#kbzj').val();
     if(!val){
       alert('请填写扣除金额！');
       return false;
     }
-     data.id  = id;
-     data.val = val;
       if(confirm("你是否要扣除保证金?"))
       {
-                 $.post("/index.php/Admincp/user/kcbzj.html",data,function(json)
+                 $.post("/gsh/delMoney",{userID:id,money:0},function(json)
                  {
-                    if(json.status==1)
+                    if(json.code=="200")
                     {
                         alert(json.msg);
-                        location.href="test";
+                        location.href="/gsh/queryVipByID?userID="+id;
                     }
-                   if(json.status==2)
+                   if(json.status=="500")
                     {
-                       alert(json.msg);
+                       alert("扣除失败");
                     }
-                   if(json.status==3)
-                   {
-                     alert(json.msg);
-                   }
                  },"json");
 
       }else

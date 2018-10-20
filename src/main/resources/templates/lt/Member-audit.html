@@ -2,169 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<link href="/css/public.css" rel="stylesheet">
 
 <title></title>
 </head>
-<style>
 
-body { 
-font: normal 11px auto "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; 
-color: #4f6b72; 
-background: #E6EAE9; 
-} 
- 
-a { 
-color: #c75f3e; 
-text-decoration: none;
-} 
-
-.ys {
-    display: inline-block;
-    padding: .3em .5em;
-    background-image: linear-gradient(#ddd, #bbb);
-    border: 1px solid rgba(0,0,0,.2);
-    border-radius: .3em;
-    box-shadow: 0 1px white inset;
-    text-align: center;
-    text-shadow: 0 1px 1px black;
-    color:white;
-    font-weight: bold;
-}
-.ys:active{
-    box-shadow: .05em .1em .2em rgba(0,0,0,.6) inset;
-    border-color: rgba(0,0,0,.3);
-    background: #bbb;
-}
---------------------- 
-作者：An丶 
-来源：CSDN 
-原文：https://blog.csdn.net/AnPHPer/article/details/79480097?utm_source=copy 
-版权声明：本文为博主原创文章，转载请附上博文链接！
- 
-#mytable { 
-text-align:center;
-padding: 0; 
-margin: 0; 
-} 
- 
-caption { 
-padding: 0 0 5px 0; 
-width: 700px; 
-font: italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; 
-text-align: right; 
-} 
- 
-th { 
-font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; 
-color: #4f6b72; 
-border-right: 1px solid #C1DAD7; 
-border-bottom: 1px solid #C1DAD7; 
-border-top: 1px solid #C1DAD7; 
-letter-spacing: 2px; 
-text-transform: uppercase; 
-text-align: left; 
-padding: 6px 6px 6px 12px; 
-background: #CAE8EA  no-repeat; 
-text-align: center;
-} 
-/*power by www.winshell.cn*/ 
-th.nobg { 
-border-top: 0; 
-border-left: 0; 
-border-right: 1px solid #C1DAD7; 
-background: none; 
-} 
- 
-td { 
-border-right: 1px solid #C1DAD7; 
-border-bottom: 1px solid #C1DAD7; 
-background: #fff; 
-font-size:11px; 
-padding: 6px 6px 6px 12px; 
-color: #4f6b72; 
-} 
-/*power by www.winshell.cn*/ 
- 
-td.alt { 
-background: #F5FAFA; 
-color: #797268; 
-} 
- 
-th.spec { 
-border-left: 1px solid #C1DAD7; 
-border-top: 0; 
-background: #fff no-repeat; 
-font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; 
-} 
- 
-th.specalt { 
-border-left: 1px solid #C1DAD7; 
-border-top: 0; 
-background: #f5fafa no-repeat; 
-font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; 
-color: #797268; 
-} 
-/*---------for IE 5.x bug*/ 
-html>body td{ font-size:11px;} 
-body,td,th { 
-font-family: 宋体, Arial; 
-font-size: 12px; 
-
---------------------- 
-作者：Clear_Love 
-来源：CSDN 
-原文：https://blog.csdn.net/sminhrosunny/article/details/6625790?utm_source=copy 
-版权声明：本文为博主原创文章，转载请附上博文链接！
-
-/* table {
-	border-collapse: collapse;
-	margin: 0 auto;
-	text-align: center;
-}
-
-table td, table th {
-	border: 1px solid #cad9ea;
-	color: #666;
-	height: 30px;
-}
-
-table thead th {
-	background-color: #CCE8EB;
-	width: 100px;
-}
-
-table tr:nth-child(odd) {
-	background: #fff;
-}
-
-table tr:nth-child(even) {
-	background: #F5FAFA;
-}
----------------------
-作者：RoyanWang
-来源：CSDN
-原文：https
-:
-/
-/
-blog.csdn.net
-/
-hello_mr_anan
-/
-article
-/
-details
-/
-70257627
-?
-utm_source
-=
-copy
-版权声明：本文为博主原创文章，转载请附上博文链接！ */
-
-
-
-</style>
 <BODY class=oneColLiqCtrHdr>
 
 	<DIV id=container>
@@ -177,10 +19,10 @@ copy
 					width="100%">
 					<TBODY>
 						<TR>
-							<TD>用户昵称: <input name="username" type="text"
-								style="width: 120px;height:15px;outline:none; border-radius:5px;cursor:pointer;text-indent:12px;"/> <input
+							<TD>用户昵称: <input name="userName" type="text"
+								style="width: 120px;height:20px;outline:none; border-radius:5px;cursor:pointer;text-indent:12px;"/> <input
 								type="hidden" name="t" value="1" /> <input type="hidden"
-								name="p" value="1" /> <input type="hidden" name="s" value="2" />
+								name="p" value="1" /> <input type="hidden" name="s" value="10" />
 								<input type="submit" class="ys" name="button" id="button" value="搜索">
 								<input type="submit" class="ys" name="export" id="button" value="导出 ">
 							</TD>
@@ -200,7 +42,7 @@ copy
 							<!--
                     <th width="50">&nbsp;</th>
 					-->
-							<th width="4%" bgcolor="#ffffff">序号</th>
+							<th width="8%" bgcolor="#ffffff">序号</th>
 							<TH width="8%" scope=col align=center>用户昵称</TH>
 							<TH width="8%" scope=col align=center>会员组</TH>
 							<TH width="8%" scope=col align=center>邮箱</TH>
@@ -208,9 +50,8 @@ copy
 							<TH width="8%" scope=col align=center>金币</TH>
 							<TH width="8%" align=center>邮箱验证</TH>
 							<TH width="8%" align=center>审核</TH>
-							<TH width="8%" align=center>鉴定</TH>
 							<TH width="8%" align=center scope=col>电话</TH>
-							<TH width="8%" align=center scope=col>最后登录时间</TH>
+							<TH width="10%" align=center scope=col>最后登录时间</TH>
 							<TH width="8%">操作</TH>
 						</TR>
 					</THEAD>
@@ -220,48 +61,45 @@ copy
 						<tr
 							th:style="${iterState.even?'background:#EFEFEF':'background:white'}"
 							th:each="temp,iterState:${PAGE_INFO.list}">
-							<td align="center" th:text="${temp.userID}"></td>
-							<td align="center" th:text="${temp.userName}"></td>
-							<td align="center"><span th:if="${temp.merchantType==0}">普通会员</span>
-								<span th:if="${temp.merchantType==1}">大陆商家用户</span> <span
-								th:if="${temp.merchantType==2}">海外商家用户</span></td>
-							<td align="center" th:text="${temp.userEmail}"></td>
-							<td align="center" th:text="${temp.userIntegral}"></td>
-							<td align="center" th:text="${temp.userMoney}"></td>
+							<td align="center">[[${iterState.count}]]</td>
+							<td align="center" th:text="${temp.username}"></td>
+							<td align="center"><span th:if="${temp.merchanttype==0}">普通会员</span>
+								<span th:if="${temp.merchanttype==1}">大陆商家用户</span> <span
+								th:if="${temp.merchanttype==2}">海外商家用户</span></td>
+							<td align="center" th:text="${temp.contactmailbox}"></td>
+							<td align="center" th:text="${temp.userintegral}"></td>
+							<td align="center" th:text="${temp.usermoney}"></td>
 
-							<td align="center"><span th:if="${temp.loginType==1}">已验证</span>
-								<span th:if="${temp.loginType!=1}">未验证</span></td>
+							<td align="center"><span th:if="${temp.mailboxverification==true}" style="color:green">已验证</span>
+								<span th:if="${temp.mailboxverification==false}">未验证</span></td>
 
-							<td align="center"><span th:if="${temp.auditStatus==1}">待审核</span>
-								<span th:if="${temp.auditStatus==2}">已通过</span> <span
-								th:if="${temp.auditStatus==3}">拒绝</span></td>
-
-							<td align="center" th:text="${temp.merchantType}"></td>
-							<td align="center" th:text="${temp.userPhone}"></td>
-							<td align="center" th:text="${#dates.format(temp.recentEntry,'yyyy-MM-dd HH:mm')}"></td>
-							
-							<!-- 							<th th:text="${temp.usernickname}"></th>
+							<td align="center"><span th:if="${temp.auditstatus==1}">待审核</span>
+								<span th:if="${temp.auditstatus==2}" style="color:green">已通过</span> <span
+								th:if="${temp.auditstatus==3}"style="color:red">未通过</span></td>
+							<td align="center" th:text="${temp.userphone}"></td>
+							<td align="center" th:text="${#dates.format(temp.recententry,'yyyy-MM-dd HH:mm')}"></td>
+							<!-- <th th:text="${temp.usernickname}"></th>
 							<th th:text="${temp.usernickname}"></th>
 							<th th:text="${temp.usernickname}"></th>
 							<th th:text="${temp.usernickname}"></th>
 							<th th:text="${temp.usernickname}"></th> -->
 
 							<!-- 动态事件绑定 -->
-							<td nowrap align="center"><a th:href="@{/lt/getuserid(userid=${temp.userID})}">修改</a> <a
-								href="/index.php/Admincp/Order/index/userid/318.html">积分记录</a> <a
+							<td nowrap align="center"><a th:href="@{/lt/getVipById(userID=${temp.userid})}">修改</a> <a
+								href="#">积分记录</a> <a
 								href="/index.php/Admincp/User/comment/userid/318/continue/aHR0cDovL3lwaHRpbmcuemdseGtqLmNvbS9pbmRleC5waHAvQWRtaW5jcC91c2VyL2luZGV4L3QvMS5odG1s.html">评论</a>
 							</td>
 						</tr>
 					<tfoot>
 						<tr>
 							<th colspan="12"><a
-								th:href="@{/lt/getList(p=1,s=${PAGE_INFO.pageSize},username=${username})}">首页</a>
+								th:href="@{/lt/getList(p=1,s=${PAGE_INFO.pageSize},userName=${userName})}">首页</a>
 								&nbsp;&nbsp; <a th:if="${PAGE_INFO.isHasPreviousPage()}"
-								th:href="@{/lt/getList(p=${PAGE_INFO.prePage},s=${PAGE_INFO.pageSize},username=${username})}">上一页</a>
+								th:href="@{/lt/getList(p=${PAGE_INFO.prePage},s=${PAGE_INFO.pageSize},userName=${userName})}">上一页</a>
 								&nbsp;&nbsp; <a th:if="${PAGE_INFO.isHasNextPage()}"
-								th:href="@{/lt/getList(p=${PAGE_INFO.nextPage},s=${PAGE_INFO.pageSize},username=${username})}">下一页</a>
+								th:href="@{/lt/getList(p=${PAGE_INFO.nextPage},s=${PAGE_INFO.pageSize},userName=${userName})}">下一页</a>
 								&nbsp;&nbsp; <a
-								th:href="@{/lt/getList(p=${PAGE_INFO.lastPage},s=${PAGE_INFO.pageSize},username=${username})}">末页</a>
+								th:href="@{/lt/getList(p=${PAGE_INFO.lastPage},s=${PAGE_INFO.pageSize},userName=${userName})}">末页</a>
 							</th>
 						</tr>
 					</tfoot>
